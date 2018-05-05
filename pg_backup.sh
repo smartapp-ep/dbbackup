@@ -170,3 +170,4 @@ if ! mkdir -p $FINALBACKUPDATAPATH; then
 fi;
 cp -r $DATAPATH/* $FINALBACKUPDATAPATH"
 
+echo -e "\nData-dir backups complete!"
