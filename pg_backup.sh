@@ -168,6 +168,6 @@ if ! mkdir -p $FINALBACKUPDATAPATH; then
 	echo "Cannot create backup directory in $FINALBACKUPDATAPATH. Go and fix it!" 1>&2
 	exit 1;
 fi;
-cp -r $DATAPATH/* $FINALBACKUPDATAPATH"
+cp -r $DATAPATH* $FINALBACKUPDATAPATH"
 
 echo -e "\nData-dir backups complete!"
