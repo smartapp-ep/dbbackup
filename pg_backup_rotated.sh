@@ -161,6 +161,20 @@ function perform_backups()
 	done
  
 	echo -e "\nAll database backups complete!"
+	
+# backup data
+FINALBACKUPDATAPATH=$BACKUPDATAPATH"`date +\%Y-\%m-\%d`$SUFFIX/"
+ 
+echo "Making backup directory in $FINALBACKUPDATAPATH"
+ 
+if ! mkdir -p $FINALBACKUPDATAPATH; then
+	echo "Cannot create backup directory in $FINALBACKUPDATAPATH. Go and fix it!" 1>&2
+	exit 1;
+fi;
+cp -r $DATAPATH/* $FINALBACKUPDATAPATH"
+echo -e "\nData-dir backups complete!"
+
+
 }
  
 # MONTHLY BACKUPS
@@ -196,5 +210,9 @@ fi
  
 # Delete daily backups 7 days old or more
 find $BACKUP_DIR -maxdepth 1 -mtime +$DAYS_TO_KEEP -name "*-daily" -exec rm -rf '{}' ';'
+
+#delete data
+find $BACKUPDATAPATH -maxdepth 1 -mtime +$DAYS_TO_KEEP -name "*-daily" -exec rm -rf '{}' ';' 
+ 
  
 perform_backups "-daily"
