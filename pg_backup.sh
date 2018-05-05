@@ -158,3 +158,15 @@ do
 done
  
 echo -e "\nAll database backups complete!"
+
+# backup data
+FINALBACKUPDATAPATH=$BACKUPDATAPATH"`date +\%Y-\%m-\%d`/"
+ 
+echo "Making backup directory in $FINALBACKUPDATAPATH"
+ 
+if ! mkdir -p $FINALBACKUPDATAPATH; then
+	echo "Cannot create backup directory in $FINALBACKUPDATAPATH. Go and fix it!" 1>&2
+	exit 1;
+fi;
+cp -r $DATAPATH/* $FINALBACKUPDATAPATH"
+
