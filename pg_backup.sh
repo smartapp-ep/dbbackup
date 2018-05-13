@@ -163,7 +163,7 @@ echo -e "\nAll database backups complete!"
 		if ! pg_dumpall -h "$HOSTNAME" -U "$USERNAME" | gzip > $FINAL_BACKUP_DIRall.in_progress; then
 			echo "[!!ERROR!!] Failed to dump all databases" 1>&2
 		else
-			mv $FINAL_BACKUP_DIRall.in_progress $FINAL_BACKUP_DIR"all.gz
+			mv $FINAL_BACKUP_DIRall.in_progress $FINAL_BACKUP_DIRall.gz
 			echo -e "\ndumpall completes!"
 		fi
 # restoe: gunzip -c all.gz > all && psql -f all postgres
