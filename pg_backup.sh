@@ -164,6 +164,7 @@ echo -e "\nAll database backups complete!"
 			echo "[!!ERROR!!] Failed to dump all databases" 1>&2
 		else
 			mv $FINAL_BACKUP_DIR"$DATABASE".all.in_progress $FINAL_BACKUP_DIR"$DATABASE".all.gz
+			echo -e "\ndumpall completes!"
 		fi
 # restoe: gunzip -c all.gz > all && psql -f all postgres
 # when restored, run vacuumdb -a -z
