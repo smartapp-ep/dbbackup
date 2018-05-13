@@ -159,7 +159,16 @@ done
  
 echo -e "\nAll database backups complete!"
 
-# backup data
+## dumpall
+		if ! pg_dumpall -h "$HOSTNAME" -U "$USERNAME" | gzip > $FINAL_BACKUP_DIR"$DATABASE".all.in_progress; then
+			echo "[!!ERROR!!] Failed to dump all databases" 1>&2
+		else
+			mv $FINAL_BACKUP_DIR"$DATABASE".all.in_progress $FINAL_BACKUP_DIR"$DATABASE".all.gz
+		fi
+# restoe: gunzip -c all.gz > all && psql -f all postgres
+# when restored, run vacuumdb -a -z
+
+## backup data
 FINALBACKUPDATAPATH=$BACKUPDATAPATH"`date +\%Y-\%m-\%d`/"
  
 echo "Making backup directory in $FINALBACKUPDATAPATH"
